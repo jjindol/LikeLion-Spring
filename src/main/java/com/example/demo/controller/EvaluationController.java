@@ -55,7 +55,4 @@ public class EvaluationController {
     public List<Evaluation> search(@RequestParam String lecturedivide,@RequestParam String search){
         return evaluationService.search(lecturedivide,search);
     }
-
-
-
 }
