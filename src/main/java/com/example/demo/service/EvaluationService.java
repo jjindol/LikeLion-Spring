@@ -102,9 +102,7 @@ public class EvaluationService {
                 deleteDto.getUserId(), deleteDto.getUserPw(), deleteDto.getUserEmail())) {
             evaluationRepository.delete(evaluation);
         }
-        else {
-            return ResponseDto.setFailed("delete failed");
-        }
+        else{return ResponseDto.setFailed("delete failed");}
         return ResponseDto.setSuccess("delete success");
     }
 

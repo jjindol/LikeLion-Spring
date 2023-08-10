@@ -20,20 +20,20 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseDto login(@RequestBody LoginDto logindto){
         System.out.println(logindto.toString());
-        ResponseDto result = authService.login((logindto));
+        ResponseDto result=authService.login((logindto));
         return result;
     }
 
 
     @PatchMapping("/logout")
     public ResponseDto modify(@RequestBody LogoutDto logoutdto) {
-        ResponseDto result = authService.logout((logoutdto));
+        ResponseDto result=authService.logout((logoutdto));
         return result;
     }
 
     @DeleteMapping("/deleteuser")
     public ResponseDto modify(@RequestBody DeleteDto deleteDto) {
-        ResponseDto result = authService.delete(deleteDto);
+        ResponseDto result=authService.delete(deleteDto);
         return result;
     }
 }

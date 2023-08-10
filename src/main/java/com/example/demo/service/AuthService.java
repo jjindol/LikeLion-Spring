@@ -14,23 +14,18 @@ import java.util.regex.Pattern;
 @Service
 public class AuthService {
 
-    final
+    @Autowired
     UserRepository userRepository;
-
-    public AuthService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
     public ResponseDto join(JoinDto joinDto){
         String userEmail= joinDto.getUserEmail();
-        String userPw= joinDto.getUserPw();
+        String userPassword= joinDto.getUserPw();
 
         //이메일 중복 확인
         try {
             if (userRepository.existsByUserEmail(userEmail))
                 return ResponseDto.setFailed("existed email");
         }catch(Exception e){
-            return ResponseDto.setFailed("Data Base Error1");
+            return ResponseDto.setFailed("Data Base Error");
         }
 
         if(!joinDto.getUserPw().equals(joinDto.getCheckuserPw()))
@@ -49,7 +44,7 @@ public class AuthService {
             if(!validation)
                 return ResponseDto.setFailed("Invalid email format");
         } catch (Exception e){
-            return ResponseDto.setFailed("Data Base Error2");
+            return ResponseDto.setFailed("Data Base Error");
         }
 
 
@@ -59,11 +54,11 @@ public class AuthService {
                 .userEmail(joinDto.getUserEmail())
                 .build();
 
-        // repository 에 저장
+        //repository에 저장
         try {
             userRepository.save(user);
         }catch(Exception e){
-            return ResponseDto.setFailed("Data Base Error3");
+            return ResponseDto.setFailed("Data Base Error");
         }
 
         return ResponseDto.setSuccess("join success");
@@ -74,7 +69,7 @@ public class AuthService {
         boolean existed=userRepository.existsByUserIdAndUserPw(loginDto.getUserId(), loginDto.getUserPw());
         if(!existed) return ResponseDto.setFailed("login information does not match");
 
-        // 이메일 형식 확인
+        //이메일 형식 확인
         boolean validation = false;
 
         String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
@@ -87,7 +82,7 @@ public class AuthService {
             if(!validation)
                 return ResponseDto.setFailed("Invalid email format");
         } catch (Exception e){
-            return ResponseDto.setFailed("Data Base Error4");
+            return ResponseDto.setFailed("Data Base Error");
         }
 
         User user=userRepository.findByUserId(loginDto.getUserId());
@@ -99,7 +94,7 @@ public class AuthService {
     public ResponseDto logout(LogoutDto logoutDto){
         if(userRepository.existsByUserIdAndUserPwAndUserEmail(logoutDto.getUserId(), logoutDto.getUserPw(), logoutDto.getUserEmail())){
             User user=userRepository.findByUserId(logoutDto.getUserId());
-            user.setLoginStatus(1);
+            user.setLoginStatus(0);
             userRepository.save(user);
             return ResponseDto.setSuccess("logout success");}
         else{
