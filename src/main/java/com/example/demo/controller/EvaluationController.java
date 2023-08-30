@@ -8,8 +8,6 @@ import com.example.demo.entity.Evaluation;
 import com.example.demo.service.EvaluationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;

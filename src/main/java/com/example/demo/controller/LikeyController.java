@@ -4,7 +4,6 @@ import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.ResponseDto;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.service.AuthService;
 import com.example.demo.service.LikeyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
