@@ -6,5 +6,5 @@
 --------
 1. Spring Boot 3.1.1
 2. JDK 17
-3. MYSQL
-4. SPRING DATA JPA
+3. MySQL
+4. Spring Data JPA
