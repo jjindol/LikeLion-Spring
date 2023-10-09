@@ -52,7 +52,7 @@ public class AuthService {
                 .userEmail(joinDto.getUserEmail())
                 .build();
 
-        //repository에 저장
+        //repository 에 저장
         try {
             userRepository.save(user);
         }catch(Exception e){
